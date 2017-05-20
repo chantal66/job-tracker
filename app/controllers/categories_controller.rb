@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit]
+  before_action :set_category, only: [:show, :edit, :destroy]
 
   def index
     @categories = Category.all
@@ -20,6 +20,11 @@ class CategoriesController < ApplicationController
       flash[:alert] = 'That category already exists'
       render :new
     end
+  end
+
+  def destroy
+    @category.destroy
+    redirect_to categories_path
   end
 
   private

@@ -5,9 +5,10 @@
 
   <div class="col-md-12 categories">
     <% @categories.each do |category| %>
-      <p><%= link_to category.title, category_path(category)  %>
-
-      </p>
+      <h4><%= link_to category.title, category_path(category)  %></h4>
+        <div class="btn-toolbar" role="toolbar">
+          <%= link_to 'Delete', category_path(category) ,method: :delete, class: 'btn btn-danger btn-xs'  %>
+        </div>
     <% end %>
   </div>
 </div>
