@@ -7,6 +7,7 @@
     <% @categories.each do |category| %>
       <h4><%= link_to category.title, category_path(category)  %></h4>
         <div class="btn-toolbar" role="toolbar">
+          <%= link_to 'Edit', category_path(category), class: 'btn btn-warning btn-xs'  %>
           <%= link_to 'Delete', category_path(category) ,method: :delete, class: 'btn btn-danger btn-xs'  %>
         </div>
     <% end %>
