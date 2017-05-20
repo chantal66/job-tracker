@@ -1,5 +1,10 @@
 All Jobs for <strong><%= @company.name %></strong>
 
 <% @jobs.each do |job| %>
-  <ul><%= job.title %> at <%= job.company.name %></ul>
+  <ul>
+    <h3> <%= job.title %> at <%= job.company.name %></h3>
+    <div>
+      <%= link_to 'Edit a job', edit_company_job_path(@company, job) %>
+    </div>
+  </ul>
 <% end %>
