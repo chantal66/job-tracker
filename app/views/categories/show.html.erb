@@ -1,7 +1,10 @@
-<h3><%= @category.title %></h3>
+<div class="btn-toolbar">
+  <%= link_to 'Back to all categories', categories_path, class: 'btn btn-info btn-xs' %>
+</div>
 
+<h3><%= @category.title %></h3>
 <ul>
-  <% @category.jobs.each do |f| %>
+  <% @category.jobs.each do |job| %>
     <h4><%= link_to "#{job.title} at #{job.company.name}", company_job_path(job.company, job) %></h4>
   <% end %>
 </ul>
