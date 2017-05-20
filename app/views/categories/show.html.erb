@@ -1,0 +1,6 @@
+
+<ul>
+  <% @category.jobs.each do |f| %>
+    <h4><%= link_to "#{job.title} at #{job.company.name}", company_job_path(job.company, job) %></h4>
+  <% end %>
+</ul>
