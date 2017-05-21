@@ -1,15 +1,39 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <%= link_to "Back to jobs at #{@company.name}", company_jobs_path, class: 'btn btn-default' %>
+      <%= link_to 'Edit', edit_company_job_path(@company, @job), class: 'btn btn-warning' %>
+      <%= link_to 'Delete', company_job_path(@company, @job), method: 'delete', class: 'btn btn-danger' %>
+    </div>
+    <h2><%= @job.title %> at <%= @company.name %></h2>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-10 col-sm-offset-2">
+        <div class="list-group">
+          <ul class="col-md-8 list-unstyled">
+            <li class="list-group-item"><strong>Title:  </strong><%= @job.title %></li>
+            <li class="list-group-item"><strong>Description: </strong> <%= @job.description %></li>
+            <li class="list-group-item"><strong>Level of Interest:</strong> <%= @job.level_of_interest %></li>
+            <li class="list-group-item"><strong>City:  </strong><%= @job.city %></li>
+            <li class="list-group-item"><strong>Company:</strong> <%= link_to @job.company.name, company_path(@job.company) %></li>
+            <% if @job.category %>
+            <li class="list-group-item"><strong>Category</strong><%= link_to "#{@job.category.title}", category_path(@job.category) %> </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 comments">
+    <h4>Comments</h4>
+    <% @comments.each do |comment| %>
+      <p class="comment">Comment Created At <%= comment.updated_at.month %> / <%= comment.updated_at.day %> : <%= comment.content %> </p>
+        <br>
+    <% end %>
+  </div>
 
-<div>
-  <%= link_to "Back to jobs at #{@company.name}", company_jobs_path %>
-  <%= link_to 'Edit', edit_company_job_path(@company, @job) %>
-  <%= link_to 'Delete', company_job_path(@company, @job), method: 'delete' %>
+  <span class="col-md-10 comment-form">
+    <%= render partial: 'comments/form' %>
+  </span>
 </div>
-
-<h2><%= @job.title %> at <%= @company.name %></h2>
-<ul>
-  <li>Title: <%= @job.title %></li>
-  <li>Description: <%= @job.description %></li>
-  <li>Level of Interest: <%= @job.level_of_interest %></li>
-  <li>City: <%= @job.city %></li>
-  <li>Company: <%= link_to @job.company.name, company_path(@job.company) %></li>
-</ul>

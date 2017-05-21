@@ -21,6 +21,8 @@ class JobsController < ApplicationController
   end
 
   def show
+    @comments = @job.comments.reverse
+    @comment = Comment.new
   end
 
   def edit
