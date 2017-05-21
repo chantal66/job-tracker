@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="page-header">
+    <h3>Jobs Dashboard</h3>
+  </div>
+
+  <div class="col-md-8 company-interest">
+    <h4>Top Companies by Level of Interest</h4>
+    <table class="table table-striped">
+      <tr>
+        <th>Company</th>
+        <th>Level of Interest</th>
+      </tr>
+      <% @top_companies_by_interest.each do |company, interest| %>
+        <tr>
+          <td><%= company %></td>
+          <td><%= interest %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-md-8 job-interest">
+      <h4>Number of Jobs by level of Interest</h4>
+    <table class="table table-striped">
+      <tr>
+        <th>Level of Interest</th>
+        <th>Number of Jobs</th>
+      </tr>
+      <% @count_of_jobs_by_interest.each do |interest, count| %>
+          <tr>
+            <td><%= interest %></td>
+            <td><%= count %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-md-8 job-location">
+    <h4>Number of Jobs by Location</h4>
+    <table class="table table-striped">
+      <tr>
+        <th>Location</th>
+        <th>Number of Jobs</th>
+      </tr>
+      <% @jobs_locations.each do |location, count| %>
+          <tr>
+            <td><%= link_to  "#{location}", jobs_path(:location => location) %></td>
+            <td><%= count %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

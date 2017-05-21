@@ -1,11 +1,13 @@
+require 'pry'
+
 class JobsController < ApplicationController
   before_action :set_company, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
     @jobs = @company.jobs
-    @contacts = @company.contacts
     @contact = Contact.new
+    @contacts = @company.contacts
   end
 
   def new
@@ -25,6 +27,7 @@ class JobsController < ApplicationController
   def show
     @comments = @job.comments.reverse
     @comment = Comment.new
+    @contacts = @company.contacts
   end
 
   def edit
@@ -42,6 +45,28 @@ class JobsController < ApplicationController
     @job.destroy
     flash[:success] = "You successfully deleted #{@job.title} at #{@company.name}"
     redirect_to company_jobs_path
+  end
+
+  def sort
+    if params[:sort] == 'location'
+      @jobs_by_location = Job.jobs_by_city.flatten
+      render :location
+    elsif params[:sort] == 'interest'
+      @jobs_by_interest = Job.jobs_by_level_of_interest.flatten
+      render :interest
+    # elsif params[:sort] == 'company'
+    #   @jobs_by_company = Job.jobs_by_company.flatten
+    #   render :company
+    elsif params[:location]
+      @jobs_in_city = Job.jobs_for_city(params[:location])
+      render :city
+    end
+  end
+
+  def dashboard
+    @count_of_jobs_by_interest = Job.all.interest
+    @top_companies_by_interest = Company.sorted_companies_by_interest[0..2]
+    @jobs_locations = Job.all.location_count
   end
 
   private

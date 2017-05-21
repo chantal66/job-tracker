@@ -1,19 +1,32 @@
-All Jobs for <strong><%= @company.name %></strong> <br>
-
-<%= link_to 'Create a new job', new_company_job_path %>
-
-<% @jobs.each do |job| %>
-  <ul>
-    <h3> <%= link_to job.title, company_job_path(@company, job) %> at <%= job.company.name %></h3>
-    <div>
-      <%= link_to 'Edit a job', edit_company_job_path(@company, job) %>
+<div class="container">
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+      <%= link_to 'Create a new job', new_company_job_path, class: 'btn btn-default' %>
     </div>
-  </ul>
-<% end %>
+    <h2>All Jobs for <strong><%= @company.name %></strong></h2>
 
-<div class="col-md-12 contacts">
-  <h3>Contacts at <%= @company.name %></h3>
-  <% @contacts.each do |contact| %>
-      <p><%= contact.first_name %> <%= contact.last_name %>, <%= contact.position %> - <%= contact.email %> </p>
+  </div>
+
+<div class="col-md-12">
+
+</div>
+  <% @jobs.each do |job| %>
+    <ul>
+      <h3> <%= link_to job.title, company_job_path(@company, job) %> at <%= job.company.name %></h3>
+      <div class="btn-toolbar" role="toolbar">
+        <%= link_to 'Edit a job', edit_company_job_path(@company, job), class: 'btn btn-warning btn-sm' %>
+      </div>
+    </ul>
   <% end %>
+
+  <div class="col-md-12 contacts">
+    <h3>Contacts at <%= @company.name %></h3>
+    <% @contacts.each do |contact| %>
+        <p><%= contact.first_name %> <%= contact.last_name %>, <%= contact.position %> - <%= contact.email %> </p>
+    <% end %>
+  </div>
+
+  <div class="col-md-12 contact-form">
+    <%= render partial: 'contacts/form' %>
+  </div>
 </div>
