@@ -1,4 +1,3 @@
-require 'pry'
 
 class JobsController < ApplicationController
   before_action :set_company, only: [:index, :new, :create, :show, :edit, :update, :destroy]
