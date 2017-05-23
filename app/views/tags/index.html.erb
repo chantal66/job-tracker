@@ -10,7 +10,7 @@
 <% @tags.each do |tag| %>
   <%= tag.title %>
     <%#= link_to 'Edit', edit_tag_path(tag), class: 'btn btn-warning' %>
-    <%#= link_to 'Delete', tag_path(tag), method: 'delete', class: 'btn btn-danger' %>
+    <%= link_to 'Delete', tag_path(tag), method: 'delete', class: 'btn btn-danger' %>
 <% end %>
 </div>
 
