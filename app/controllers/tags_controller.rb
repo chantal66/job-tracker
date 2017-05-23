@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:edit, :update, :destroy]
+  before_action :set_tag, only: [:edit, :update, :destroy, :show]
   def index
     @tags = Tag.all
   end
@@ -16,6 +16,9 @@ class TagsController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def update
