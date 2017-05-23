@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-
+  before_action :set_tag, only: [:edit, :update]
   def index
     @tags = Tag.all
   end
@@ -15,10 +15,23 @@ class TagsController < ApplicationController
     redirect_to tags_path
   end
 
+  def edit
+  end
+
+  def update
+    @tag.update(tag_params)
+
+    redirect_to tags_path
+  end
+
 
   private
 
   def tag_params
     params.require(:tag).permit(:title)
+  end
+
+  def set_tag
+    @tag = Tag.find(params[:id])
   end
 end
